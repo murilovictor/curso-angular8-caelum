@@ -1,0 +1,1 @@
+ng -o // Já abre o Navegador e Executa do servidor
