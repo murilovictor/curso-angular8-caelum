@@ -1,1 +1,14 @@
+Plugns
+Angular Schematics
+
+
 ng -o // Já abre o Navegador e Executa do servidor
+
+
+Aula2
+
+Eventos
+() = Event
+[] = Propriedade
+* = template, modificação do DOM
+[()] = interpolação two way data binding
