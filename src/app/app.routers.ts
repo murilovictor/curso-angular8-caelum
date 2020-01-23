@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { CaixaDeEntradaComponent } from './module/caixa-de-entrada/caixa-de-entrada.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './module/login/login.component';
 import { CadastroComponent } from './module/cadastro/cadastro.component';
 
 const rotas: Routes =  [
