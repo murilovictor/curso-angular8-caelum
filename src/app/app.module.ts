@@ -2,7 +2,7 @@ import { ModuleRoteamento } from './app.routers';
 import { CadastroComponent } from './module/cadastro/cadastro.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HeaderComponent } from './components/header/header.component';
 import { AppComponent } from './app.component';
@@ -25,7 +25,8 @@ import { FormFieldDirective } from './components/form-group/form-field.directive
   imports: [
     BrowserModule,
     FormsModule,
-    ModuleRoteamento
+    ModuleRoteamento,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

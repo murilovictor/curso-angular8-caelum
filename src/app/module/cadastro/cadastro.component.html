@@ -3,29 +3,30 @@
     <main class="mdl-layout__content">
       <div class="page-content">
         <div class="mdl-grid">
-          <form>
+          <form [formGroup]="formCadastro" (ngSubmit)="handleCadastroUsuario()">
 
-              <cmail-form-group>
-                  <input type="text" autofocus required name="Nome"  gmailFormField
-                  class="mdl-textfield__input">
-                  <span class="mdl-textfield__error">Informe o nome!</span>
+              <cmail-form-group [campo]="formCadastro.get('nome')">
+                  <input type="text" autofocus name="nome"  gmailFormField
+                  class="mdl-textfield__input" formControlName="nome">
+                  <span *ngIf="formCadastro.get('nome').getError('required')" class="mdl-textfield__error">Informe o nome!</span>
+                  <span *ngIf="formCadastro.get('nome').hasError('minlength')" class="mdl-textfield__error">informar pelo menos {{teste}} digitos</span>
               </cmail-form-group>
 
-            <cmail-form-group>
-                <input type="text" autofocus required name="UserName" gmailFormField
-                class="mdl-textfield__input">
+            <cmail-form-group [campo]="formCadastro.get('username')">
+                <input type="text" autofocus required name="username" gmailFormField
+                class="mdl-textfield__input" formControlName="username">
                 <span class="mdl-textfield__error">Informe o Username!</span>
             </cmail-form-group>
 
-            <cmail-form-group>
-                <input type="password" required name="Senha"  gmailFormField
-                class="mdl-textfield__input">
+            <cmail-form-group [campo]="formCadastro.get('senha')">
+                <input type="password" required name="senha"  gmailFormField
+                class="mdl-textfield__input" formControlName="senha">
                 <span class="mdl-textfield__error">Informe uma senha!</span>
             </cmail-form-group>
           
-            <cmail-form-group>
-                <input type="password" name="Avatar" gmailFormField
-                class="mdl-textfield__input">
+            <cmail-form-group [campo]="formCadastro.get('avatar')">
+                <input type="text" name="avatar" gmailFormField
+                class="mdl-textfield__input" formControlName="avatar">
                 <span class="mdl-textfield__error">Informe um Avatar!</span>
             </cmail-form-group>            
 
