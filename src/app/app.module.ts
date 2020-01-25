@@ -1,8 +1,9 @@
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { ModuleRoteamento } from './app.routers';
 import { CadastroComponent } from './module/cadastro/cadastro.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HeaderComponent } from './components/header/header.component';
 import { AppComponent } from './app.component';
@@ -26,7 +27,8 @@ import { FormFieldDirective } from './components/form-group/form-field.directive
     BrowserModule,
     FormsModule,
     ModuleRoteamento,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

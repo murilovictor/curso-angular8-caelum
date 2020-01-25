@@ -18,13 +18,13 @@ export class FormGroupComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.campo)
+    //console.log(this.campo)
     const input = this._elemento.nativeElement.querySelector('input')
 
     this.textoDaLabel = input.name.replace(input.name[0], input.name[0].toUpperCase())
     this.idDoCampo = input.name
 
-    console.log(input)
+    //console.log(input)
   }
 
 

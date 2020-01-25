@@ -1,44 +1,64 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-    <cmail-header></cmail-header>
-    <main class="mdl-layout__content">
-      <div class="page-content">
-        <div class="mdl-grid">
-          <form [formGroup]="formCadastro" (ngSubmit)="handleCadastroUsuario()">
+  <cmail-header></cmail-header>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+      <div class="mdl-grid">
+        <form [formGroup]="formCadastro" (ngSubmit)="handleCadastroUsuario()">
 
-              <cmail-form-group [campo]="formCadastro.get('nome')">
-                  <input type="text" autofocus name="nome"  gmailFormField
-                  class="mdl-textfield__input" formControlName="nome">
-                  <span *ngIf="formCadastro.get('nome').getError('required')" class="mdl-textfield__error">Informe o nome!</span>
-                  <span *ngIf="formCadastro.get('nome').hasError('minlength')" class="mdl-textfield__error">informar pelo menos {{teste}} digitos</span>
-              </cmail-form-group>
+          <cmail-form-group [campo]="formCadastro.get('nome')">
+            <input type="text" autofocus name="nome" gmailFormField class="mdl-textfield__input" formControlName="nome">
+            <span *ngIf="formCadastro.get('nome').getError('required')" class="mdl-textfield__error">Informe o
+              nome!</span>
+            <span *ngIf="formCadastro.get('nome').hasError('minlength')" class="mdl-textfield__error">informar pelo
+              menos {{minNome}} digitos</span>
+          </cmail-form-group>
 
-            <cmail-form-group [campo]="formCadastro.get('username')">
-                <input type="text" autofocus required name="username" gmailFormField
-                class="mdl-textfield__input" formControlName="username">
-                <span class="mdl-textfield__error">Informe o Username!</span>
-            </cmail-form-group>
+          <cmail-form-group [campo]="formCadastro.get('username')">
+            <input type="text" autofocus required name="username" gmailFormField class="mdl-textfield__input"
+              formControlName="username">
+            <span class="mdl-textfield__error">Informe o Username!</span>
+          </cmail-form-group>
 
-            <cmail-form-group [campo]="formCadastro.get('senha')">
-                <input type="password" required name="senha"  gmailFormField
-                class="mdl-textfield__input" formControlName="senha">
-                <span class="mdl-textfield__error">Informe uma senha!</span>
-            </cmail-form-group>
+          <cmail-form-group [campo]="formCadastro.get('telefone')">
+            <input type="text" autofocus required name="telefone" gmailFormField class="mdl-textfield__input"
+              formControlName="telefone">
+            <span *ngIf="formCadastro.get('telefone').getError('pattern')" class="mdl-textfield__error">O telefone deve
+              conter 8 ou 9 números! </span>
+              <span *ngIf="formCadastro.get('telefone').getError('required')" class="mdl-textfield__error">Informe um telefone.</span>              
+          </cmail-form-group>
+
+          <cmail-form-group [campo]="formCadastro.get('senha')">
+            <input type="password" required name="senha" gmailFormField class="mdl-textfield__input"
+              formControlName="senha">
+            <span class="mdl-textfield__error">Informe uma senha!</span>
+          </cmail-form-group>
+
+          <cmail-form-group [campo]="formCadastro.get('avatar')">
+            <input type="text" required name="avatar" gmailFormField class="mdl-textfield__input" formControlName="avatar">
+            
+            <span *ngIf="formCadastro.get('avatar').getError('required')" class="mdl-textfield__error">Informe um Avatar!</span>
+
+            <span *ngIf="formCadastro.get('avatar').status === 'VALID'" class="mdl-textfield__error mdl-textfield__valid">Avatar Valido!</span>
+            <span *ngIf="formCadastro.get('avatar').status === 'PENDING'" class="mdl-textfield__error mdl-textfield__checking">Validando avatar. . .</span>
+            <span *ngIf="formCadastro.get('avatar').status === 'INVALID' && !formCadastro.get('avatar').getError('required')" class="mdl-textfield__error">Avatar Invalido!</span>
+
+          </cmail-form-group>
           
-            <cmail-form-group [campo]="formCadastro.get('avatar')">
-                <input type="text" name="avatar" gmailFormField
-                class="mdl-textfield__input" formControlName="avatar">
-                <span class="mdl-textfield__error">Informe um Avatar!</span>
-            </cmail-form-group>            
+          <ul *ngIf="mensagemErro" class="mdl-textfield is-invalid">
+              <li *ngFor="let erro of mensagemErro" class="mdl-textfield__error">
+                {{erro.message}}: {{erro.value}}
+              </li>
+            
+          </ul>
 
-            <div class="mdl-card__actions">
-              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-                Cadastrar
-              </button>
-            </div>
-  
-          </form>
-        </div>
+          <div class="mdl-card__actions">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+              Cadastrar
+            </button>
+          </div>
+
+        </form>
       </div>
-    </main>
-  </div>
-  
+    </div>
+  </main>
+</div>
