@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SheredModule } from 'src/app/components/shered.module';
 import { CaixaDeEntradaRoutingModule } from './caixa-de-entrada-routing.module';
+import { EmailService } from 'src/app/services/email.service';
 
 
 
@@ -19,6 +20,9 @@ import { CaixaDeEntradaRoutingModule } from './caixa-de-entrada-routing.module';
     HttpClientModule,
     SheredModule,
     CaixaDeEntradaRoutingModule
+  ],
+  providers: [
+    EmailService
   ]
 })
 export class CaixaDeEntradaModule { }

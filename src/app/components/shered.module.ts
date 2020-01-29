@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { FormGroupComponent } from './form-group/form-group.component';
 import { FormFieldDirective } from './form-group/form-field.directive';
 import { RouterModule } from '@angular/router';
+import { CmailListItemComponent } from './cmail-list-item/cmail-list-item.component';
 
 
 
@@ -11,7 +12,9 @@ import { RouterModule } from '@angular/router';
   declarations: [
     HeaderComponent,
     FormGroupComponent,
-    FormFieldDirective
+    FormFieldDirective,
+    CmailListItemComponent,
+    CmailListItemComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +23,8 @@ import { RouterModule } from '@angular/router';
   exports: [
     HeaderComponent,
     FormGroupComponent,
-    FormFieldDirective
+    FormFieldDirective,
+    CmailListItemComponent
   ]
 })
 export class SheredModule { }

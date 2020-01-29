@@ -12,24 +12,33 @@
         <!-- aqui os campos do formulário -->
 
         <cmail-form-group [campo]="formCadastro.get('email')">
-          <input type="text" required autofocus name="email" gmailFormField class="mdl-textfield__input" formControlName="email">
+          <input type="text" autofocus name="email" gmailFormField class="mdl-textfield__input" formControlName="email">
           <span *ngIf="formCadastro.get('email').getError('required')" class="mdl-textfield__error">Informe o
             email!</span>
         </cmail-form-group>
 
         <cmail-form-group [campo]="formCadastro.get('password')">
-          <input type="text" required autofocus name="password" gmailFormField class="mdl-textfield__input" formControlName="password">
+          <input type="password" autofocus name="password" gmailFormField class="mdl-textfield__input" formControlName="password">
           <span *ngIf="formCadastro.get('password').getError('required')" class="mdl-textfield__error">Informe o
             password!</span>
         </cmail-form-group>
           
+
+        <div class="mdl-card__title mdl-color--red mdl-color-text--white"  *ngIf="mensagemError">
+            <span>{{mensagemError}}</span> 
+          </div>
+
         <div class="mdl-card__actions mdl-card--border">
           <a routerLink="/cadastro" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
             Primeiro login? Cadastre-se!
           </a>
-          <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent entrar">
+
+
+
+          <button type="submit" [disabled]="formCadastro.invalid" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent entrar">
             Entrar
           </button>
+        
         </div>
       </form>
 

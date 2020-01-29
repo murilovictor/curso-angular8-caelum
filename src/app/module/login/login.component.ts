@@ -1,9 +1,9 @@
-import { HttpClient, HttpResponseBase, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { catchError, map } from 'rxjs/operators';
-import { log } from 'util';
 import { Router } from '@angular/router';
+import { LoginServiceService } from 'src/app/services/login-service.service';
+import { Login } from 'src/app/models/login.model';
 
 @Component({
   selector: 'app-login',
@@ -12,14 +12,15 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  
-  constructor(private httpClient: HttpClient, private roteador: Router) { }
-  
+
+  constructor(private loginService: LoginServiceService, private roteador: Router) { }
+
   ngOnInit() {
   }
 
   urlLogin: string = 'http://localhost:8070/login'
-  
+  mensagemError = ''
+
   formCadastro = new FormGroup({
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
@@ -28,32 +29,22 @@ export class LoginComponent implements OnInit {
 
   logar() {
 
-    console.log(this.formCadastro.value)
+    console.log(this.formCadastro)
 
-    this.httpClient.post(this.urlLogin, this.formCadastro.value)
+    this.loginService.logar(this.formCadastro.value)
       .subscribe((response: Login) => {
         console.log(response.token)
 
         localStorage.setItem('cmail-token', response.token)
+        this.roteador.navigate(['/inbox'])
 
-        setTimeout(()=> {
-          this.roteador.navigate(['/inbox'])
-        }, 1000)
-
-      }, 
-      (error: HttpErrorResponse) => {
-        const msgError = error.error.message
-        console.error(error)
-        alert(msgError)
-      })
+      },
+        (error: HttpErrorResponse) => {
+          this.mensagemError = error.error.message
+          console.error(error)
+        })
 
   }
 
 
-}
-
-interface Login {
-  email: string,
-  password: string,
-  token: string
 }
