@@ -3,12 +3,11 @@
   <main class="mdl-layout__content">
     <div class="page-content">
 
-      <cmail-list-item></cmail-list-item>
       <div class="mdl-grid">
-
         <ul>
           <li *ngFor="let email of emailEnviados">
-            {{email.destinatario}}
+            <cmail-list-item [dadosEmail]="email" 
+                             (eventoRemover)="handlerRemoveEmail(email.id)"></cmail-list-item>
           </li>
         </ul>
 
