@@ -4,8 +4,13 @@
     <div class="page-content">
 
       <div class="mdl-grid">
+        <div *ngIf="valorParaFiltrar">
+            Valor do Filtro: {{valorParaFiltrar}}
+        </div>
+
         <ul>
-          <li *ngFor="let email of emailEnviados">
+          <li *ngFor="let email of filtrarEmails()">
+            
             <cmail-list-item [dadosEmail]="email" 
                              (eventoRemover)="handlerRemoveEmail(email.id)"></cmail-list-item>
           </li>

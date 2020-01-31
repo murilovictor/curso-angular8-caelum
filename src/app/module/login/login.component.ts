@@ -1,9 +1,11 @@
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { LoginServiceService } from 'src/app/services/login-service.service';
+
+import { Title } from '@angular/platform-browser';
 import { Login } from 'src/app/models/login.model';
+import { LoginServiceService } from 'src/app/services/login-service.service';
 
 @Component({
   selector: 'app-login',
@@ -11,21 +13,22 @@ import { Login } from 'src/app/models/login.model';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-
-  constructor(private loginService: LoginServiceService, private roteador: Router) { }
-
-  ngOnInit() {
-  }
-
   urlLogin: string = 'http://localhost:8070/login'
   mensagemError = ''
+
+
+  constructor(private loginService: LoginServiceService,
+    private roteador: Router,
+    private title: Title) { }
+
+  ngOnInit() {
+    this.title.setTitle('Login')
+  }
 
   formCadastro = new FormGroup({
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   });
-
 
   logar() {
 
@@ -45,6 +48,5 @@ export class LoginComponent implements OnInit {
         })
 
   }
-
 
 }

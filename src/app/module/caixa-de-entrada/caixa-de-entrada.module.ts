@@ -6,12 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { SheredModule } from 'src/app/components/shered.module';
 import { CaixaDeEntradaRoutingModule } from './caixa-de-entrada-routing.module';
 import { EmailService } from 'src/app/services/email.service';
+import { FiltroPorAssuntoPipe } from './filtro-por-assunto.pipe';
 
 
 
 @NgModule({
   declarations: [
-    CaixaDeEntradaComponent
+    CaixaDeEntradaComponent,
+    FiltroPorAssuntoPipe
   ],
   imports: [
     CommonModule,

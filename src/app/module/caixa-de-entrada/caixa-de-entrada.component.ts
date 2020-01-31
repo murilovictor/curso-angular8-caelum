@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EmailService } from 'src/app/services/email.service';
+import { PageService } from 'src/app/services/page.service';
+import { HeaderService } from 'src/app/services/header.service';
 
 @Component({
   selector: 'app-caixa-de-entrada',
@@ -9,11 +11,20 @@ import { EmailService } from 'src/app/services/email.service';
 })
 export class CaixaDeEntradaComponent implements OnInit {
   emailEnviados = [];
+  valorParaFiltrar = ''
 
-  constructor(private emailService: EmailService) { }
+  constructor(private emailService: EmailService,
+    private pageService: PageService,
+    private headerService: HeaderService) {
+
+  }
 
   ngOnInit() {
+    this.pageService.defineTitulo('Caixa de Entrada - CMail')
     this.carregarTodosEmails()
+    this.headerService.valorDoInputSubject
+      .subscribe(valorDoFiltro => this.valorParaFiltrar = valorDoFiltro)
+
   }
 
   private _isNewEmaiilOpen = false
@@ -68,13 +79,22 @@ export class CaixaDeEntradaComponent implements OnInit {
     this.emailEnviados = this.emailEnviados.filter(email => email.id != id)
   }
 
-  carregarTodosEmails(){
+  carregarTodosEmails() {
     this.emailService.listar()
-    .subscribe((response: any) => {
-      this.emailEnviados = response
-      console.log(this.emailEnviados)
-    },
-      error => console.error('Erro ao Buscar Emails: ', error))
+      .subscribe((response: any) => {
+        this.emailEnviados = response
+        console.log(this.emailEnviados)
+      },
+        error => console.error('Erro ao Buscar Emails: ', error))
+  }
+
+  filtrarEmails() {
+    const valorParaFiltrarMinusculo = this.valorParaFiltrar.toLowerCase()
+
+    return this.emailEnviados.filter(email => {
+      const assuntoMinusculo = email.assunto.toLowerCase()
+      return assuntoMinusculo.includes(valorParaFiltrarMinusculo)
+    })
   }
 
 }

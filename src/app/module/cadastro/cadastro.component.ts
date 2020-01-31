@@ -6,6 +6,7 @@ import { map, catchError } from 'rxjs/operators'
 
 import { UserModel } from 'src/app/models/user.model'
 import { Router } from '@angular/router';
+import { PageService } from 'src/app/services/page.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -18,9 +19,12 @@ export class CadastroComponent implements OnInit {
   mensagemErro = ''
 
 
-  constructor(private httpClient: HttpClient, private roteador: Router) { }
+  constructor(private httpClient: HttpClient, 
+              private roteador: Router,
+              private pageService: PageService) { }
 
   ngOnInit() {
+    this.pageService.defineTitulo('Cadastro de Usuários')
   }
 
 
