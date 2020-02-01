@@ -5,6 +5,7 @@ import { FormGroupComponent } from './form-group/form-group.component';
 import { FormFieldDirective } from './form-group/form-field.directive';
 import { RouterModule } from '@angular/router';
 import { CmailListItemComponent } from './cmail-list-item/cmail-list-item.component';
+import { InboxViewComponent } from '../module/inbox-view/inbox-view.component';
 
 
 
@@ -14,7 +15,8 @@ import { CmailListItemComponent } from './cmail-list-item/cmail-list-item.compon
     FormGroupComponent,
     FormFieldDirective,
     CmailListItemComponent,
-    CmailListItemComponent
+    CmailListItemComponent,
+    InboxViewComponent
   ],
   imports: [
     CommonModule,

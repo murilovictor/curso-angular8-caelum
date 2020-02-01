@@ -44,4 +44,9 @@ export class EmailService {
   deletar(id: string) {
     return this.httpCliente.delete(`${this.api}/${id}`, { headers: this.headers })
   }
+
+
+  findById(id: string){
+    return this.httpCliente.get(`${this.api}/${id}`, { headers: this.headers })
+  }
 }

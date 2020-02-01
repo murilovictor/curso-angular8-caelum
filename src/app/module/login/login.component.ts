@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   });
 
+
   logar() {
 
     console.log(this.formCadastro)
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
         console.log(response.token)
 
         localStorage.setItem('cmail-token', response.token)
+        localStorage.setItem('user-info', JSON.stringify(response))
         this.roteador.navigate(['/inbox'])
 
       },
